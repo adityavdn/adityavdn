@@ -1,312 +1,337 @@
 <div align="center">
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0B0D10,50:151A21,100:2A2F38&height=220&section=header&text=ADITYA%20VARDHAN%20SIVALANKA&fontSize=42&fontColor=F5F7FA&fontAlignY=38&desc=DATA%20SCIENCE%20%7C%20MACHINE%20LEARNING%20%7C%20ANALYTICS&descAlignY=60&descSize=17&animation=twinkling" width="100%"/>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:050608,45:0B1117,100:17212B&text=ADITYA%20VARDHAN%20SIVALANKA&fontSize=40&fontColor=F5F7FA&fontAlignY=38&desc=DATA%20SCIENCE%20%7C%20MACHINE%20LEARNING%20%7C%20ANALYTICS&descAlignY=61&descSize=16&animation=twinkling" width="100%" alt="Aditya Vardhan Sivalanka"/>
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=18&duration=2600&pause=800&color=9FE870&center=true&vCenter=true&width=850&lines=Turning+data+into+decisions.;Building+machine+learning+systems.;Engineering+data+pipelines+that+scale.;Python+%7C+SQL+%7C+ML+%7C+Statistics+%7C+Analytics.;Based+in+London%2C+United+Kingdom." alt="Animated introduction"/>
+
+<br>
 
 <a href="https://adityamadeaportfolio.netlify.app/">
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=18&duration=2800&pause=900&color=9FE870&center=true&vCenter=true&width=760&lines=Turning+data+into+decisions.;Building+models+that+solve+real+problems.;Python+%7C+SQL+%7C+Machine+Learning+%7C+Data+Engineering;Based+in+London%2C+UK." alt="Typing animation"/>
+<img src="https://img.shields.io/badge/PORTFOLIO-9FE870?style=for-the-badge&logo=vercel&logoColor=050608&labelColor=050608" alt="Portfolio"/>
+</a>
+<a href="https://www.linkedin.com/in/aditya-vardhan-sivalanka-632499201/">
+<img src="https://img.shields.io/badge/LINKEDIN-9FE870?style=for-the-badge&logo=linkedin&logoColor=050608&labelColor=050608" alt="LinkedIn"/>
+</a>
+<a href="mailto:adityavardhan5673@gmail.com">
+<img src="https://img.shields.io/badge/EMAIL-9FE870?style=for-the-badge&logo=gmail&logoColor=050608&labelColor=050608" alt="Email"/>
 </a>
 
-<br/>
-
-<a href="https://adityamadeaportfolio.netlify.app/"><img src="https://img.shields.io/badge/PORTFOLIO-0B0D10?style=for-the-badge&logo=vercel&logoColor=white"/></a>
-<a href="https://www.linkedin.com/in/aditya-vardhan-sivalanka-632499201/"><img src="https://img.shields.io/badge/LINKEDIN-0B0D10?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
-<a href="mailto:adityavardhan5673@gmail.com"><img src="https://img.shields.io/badge/EMAIL-0B0D10?style=for-the-badge&logo=gmail&logoColor=white"/></a>
-
-<br/><br/>
-
-<img src="https://komarev.com/ghpvc/?username=adityavdn&style=for-the-badge&color=9FE870&label=PROFILE+VIEWS" alt="Profile views"/>
 </div>
 
-------------------------------------------------------------------------
+---
 
 <div align="center">
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=22&duration=2600&pause=700&color=F5F7FA&center=true&vCenter=true&width=650&lines=%2F%2F+ABOUT+ME;%3E+DATA+%E2%86%92+MODELS+%E2%86%92+INSIGHTS+%E2%86%92+IMPACT" alt="About animation"/>
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=20&duration=2200&pause=700&color=9FE870&center=true&vCenter=true&width=650&lines=01+%2F%2F+ABOUT+ME" alt="About me"/>
+
 </div>
 
-I'm a **Data Science postgraduate in the UK** with 2+ years of
-experience across **machine learning, data analytics, scalable data
-pipelines and security analytics**.
+I'm a **Data Science postgraduate in London** with experience across **machine learning, data analytics, data engineering and security analytics**.
 
-My work sits at the intersection of **statistics, machine learning and
-engineering** --- taking messy data, finding the signal, building
-reliable models and turning the result into something useful.
+I like working on the complete journey from **raw data → analysis → modelling → evaluation → deployment**. My focus is on building practical systems that turn data into something useful, measurable and understandable.
 
-Currently focused on:
+### Current focus
 
-- Machine Learning & Predictive Analytics
-- Data Engineering & Large-Scale Processing
-- Statistical Modelling & Data Visualisation
-- AI/ML systems and practical deployment
-- Security analytics as a complementary technical domain
-
-<br/>
+`Machine Learning` · `Predictive Analytics` · `Statistics` · `Data Engineering` · `AI` · `Data Visualisation` · `Real-Time Analytics`
 
 <div align="center">
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0B0D10&height=2&section=header" width="70%"/>
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=20&duration=2400&pause=800&color=9FE870&center=true&vCenter=true&width=600&lines=01+%2F+SELECTED+WORK" alt="Selected work animation"/>
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=14&duration=2200&pause=600&color=7C8794&center=true&vCenter=true&width=800&lines=PROBLEM+%E2%86%92+DATA+%E2%86%92+MODEL+%E2%86%92+EVALUATION+%E2%86%92+IMPACT" alt="Workflow"/>
+
 </div>
 
-## Selected Work
+---
 
-    <table>
+<div align="center">
 
-    <tr>
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=20&duration=2200&pause=700&color=9FE870&center=true&vCenter=true&width=650&lines=02+%2F%2F+SELECTED+WORK" alt="Selected work"/>
 
-    <td width="50%" valign="top">
+</div>
 
-### Real-Time Transaction Anomaly Detection
+### Real-Time E-Commerce Anomaly Detection
 
-<a href="https://github.com/adityavdn">
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=13&duration=2200&pause=600&color=9FE870&width=360&lines=Kafka+%E2%86%92+Spark+%E2%86%92+ML+%E2%86%92+Dashboard" alt="Project stack animation"/>
-</a>
+**Streaming data → anomaly detection → live insight**
 
-A streaming machine-learning system designed to detect anomalous
-e-commerce transactions in near real time.
+A machine-learning system designed to identify unusual e-commerce transactions in near real time.
 
-**Stack:** Python · Apache Kafka · Spark Structured Streaming ·
-Isolation Forest · Streamlit/Plotly
+**Stack:** Python · Apache Kafka · Spark Structured Streaming · Isolation Forest · Streamlit · Plotly
 
-    </td>
-
-    <td width="50%" valign="top">
+---
 
 ### Employee Retention Prediction
 
-<a href="https://github.com/adityavdn/Predicting_Employee_Retention">
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=13&duration=2200&pause=600&color=9FE870&width=360&lines=DATA+%E2%86%92+EDA+%E2%86%92+MODEL+%E2%86%92+PREDICTION" alt="Project stack animation"/>
-</a>
+**Data → EDA → feature engineering → prediction**
 
-A predictive analytics project focused on identifying patterns
-associated with employee retention and turning them into actionable
-insights.
+Predictive analytics project exploring the factors associated with employee retention and converting those relationships into actionable insights.
 
-**Stack:** Python · Pandas · NumPy · Scikit-learn · Matplotlib ·
-Statistics
+**Stack:** Python · Pandas · NumPy · Scikit-learn · Matplotlib · Statistics
 
-    </td>
+[View repository →](https://github.com/adityavdn/Predicting_Employee_Retention)
 
-    </tr>
-
-    <tr>
-
-    <td width="50%" valign="top">
+---
 
 ### Credit Risk & Exploratory Data Analysis
 
-<a href="https://github.com/adityavdn/credit-eda">
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=13&duration=2200&pause=600&color=9FE870&width=360&lines=CLEAN+%E2%86%92+EXPLORE+%E2%86%92+VISUALISE+%E2%86%92+EXPLAIN" alt="Project stack animation"/>
-</a>
+**Clean → explore → visualise → explain**
 
-End-to-end exploratory analysis covering missing data, outliers,
-distributions and debt-to-income relationships.
+End-to-end exploratory analysis covering missing values, outliers, distributions, correlations and debt-to-income relationships.
 
 **Stack:** Python · Pandas · NumPy · Matplotlib · Seaborn · Jupyter
 
-    </td>
+[View repository →](https://github.com/adityavdn/credit-eda)
 
-    <td width="50%" valign="top">
+---
 
-### Smart Accident Detection System
+### Smart Accident Detection & Emergency Response
 
-<a href="https://www.ijisrt.com/assets/upload/files/IJISRT24MAY394.pdf">
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=13&duration=2200&pause=600&color=9FE870&width=360&lines=IoT+%2B+DATA+%2B+AUTOMATION+%2B+SAFETY" alt="Project stack animation"/>
-</a>
+**IoT + data + automation + safety**
 
-Final-year IoT project for automated accident detection and emergency
-response. Developed as the best final-year project of the academic
-career.
+Final-year project focused on automated accident detection and emergency response. The project was recognised as the **best final-year project of my academic career** and resulted in a published research paper.
 
-**Stack:** IoT · Sensors · Embedded Systems · Data Processing ·
-Automation
+[Read research paper →](https://www.ijisrt.com/assets/upload/files/IJISRT24MAY394.pdf)
 
-    </td>
-
-    </tr>
-
-    </table>
+---
 
 <div align="center">
+
 <a href="https://github.com/adityavdn?tab=repositories">
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=14&duration=2500&pause=700&color=F5F7FA&center=true&vCenter=true&width=520&lines=%5B+VIEW+ALL+REPOSITORIES+%5D" alt="Repositories animation"/>
+<img src="https://img.shields.io/badge/EXPLORE_ALL_REPOSITORIES-050608?style=for-the-badge&logo=github&logoColor=9FE870&color=9FE870&labelColor=050608" alt="Explore repositories"/>
 </a>
+
 </div>
 
-------------------------------------------------------------------------
+---
 
 <div align="center">
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=20&duration=2400&pause=800&color=9FE870&center=true&vCenter=true&width=600&lines=02+%2F+TOOLBOX" alt="Toolbox animation"/>
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=20&duration=2200&pause=700&color=9FE870&center=true&vCenter=true&width=650&lines=03+%2F%2F+TECH+STACK" alt="Tech stack"/>
+
 </div>
 
-### Core
+### Languages
 
-    <p align="center">
+<div align="center">
+<img src="https://skillicons.dev/icons?i=python,cpp,c,java,js,r&theme=dark" alt="Programming languages"/>
+</div>
 
-<img src="https://skillicons.dev/icons?i=python,cpp,c,java,js,sql,r&theme=dark" alt="Languages"/>
-```
-</p>
-```
-### Data & Machine Learning
+### Data Science & Machine Learning
 
-    <p align="center">
+<div align="center">
+<img src="https://skillicons.dev/icons?i=numpy,pandas,sklearn,tensorflow,pytorch&theme=dark" alt="Data science and machine learning"/>
+</div>
 
-<img src="https://skillicons.dev/icons?i=python,tensorflow,pytorch,sklearn,pandas,numpy,matplotlib&theme=dark" alt="Data and ML"/>
-```
-</p>
-```
-```
-<p align="center">
-```
-<img src="https://img.shields.io/badge/SCIPY-0B0D10?style=for-the-badge&logo=scipy&logoColor=white"/>
-<img src="https://img.shields.io/badge/PLOTLY-0B0D10?style=for-the-badge&logo=plotly&logoColor=white"/>
-<img src="https://img.shields.io/badge/MLFLOW-0B0D10?style=for-the-badge&logo=mlflow&logoColor=white"/>
-<img src="https://img.shields.io/badge/KERAS-0B0D10?style=for-the-badge&logo=keras&logoColor=white"/>
-```
-</p>
-```
+<div align="center">
+
+<img src="https://img.shields.io/badge/STATISTICS-050608?style=for-the-badge&color=9FE870" alt="Statistics"/>
+<img src="https://img.shields.io/badge/MACHINE%20LEARNING-050608?style=for-the-badge&color=9FE870" alt="Machine learning"/>
+<img src="https://img.shields.io/badge/DEEP%20LEARNING-050608?style=for-the-badge&color=9FE870" alt="Deep learning"/>
+<img src="https://img.shields.io/badge/FEATURE%20ENGINEERING-050608?style=for-the-badge&color=9FE870" alt="Feature engineering"/>
+
+</div>
+
 ### Data Engineering & Infrastructure
 
-    <p align="center">
-
-<img src="https://skillicons.dev/icons?i=spark,kafka,docker,kubernetes,mysql,mongodb,git&theme=dark" alt="Data engineering"/>
-```
-</p>
-```
-### Analytics & Security
-
-    <p align="center">
-
-<img src="https://img.shields.io/badge/SPLUNK-0B0D10?style=for-the-badge&logo=splunk&logoColor=white"/>
-<img src="https://img.shields.io/badge/SOPHOS-0B0D10?style=for-the-badge&logo=sophos&logoColor=white"/>
-<img src="https://img.shields.io/badge/QRADAR-0B0D10?style=for-the-badge&logo=ibm&logoColor=white"/>
-<img src="https://img.shields.io/badge/SIEM-0B0D10?style=for-the-badge&logo=security&logoColor=white"/>
-```
-</p>
-```
-### Creative / Other
-
-    <p align="center">
-
-<img src="https://img.shields.io/badge/ADOBE%20PREMIERE-0B0D10?style=for-the-badge&logo=adobepremierepro&logoColor=white"/>
-<img src="https://img.shields.io/badge/AFTER%20EFFECTS-0B0D10?style=for-the-badge&logo=adobeaftereffects&logoColor=white"/>
-<img src="https://img.shields.io/badge/ILLUSTRATOR-0B0D10?style=for-the-badge&logo=adobeillustrator&logoColor=white"/>
-<img src="https://img.shields.io/badge/PHOTOSHOP-0B0D10?style=for-the-badge&logo=adobephotoshop&logoColor=white"/>
-```
-</p>
-```
-
-------------------------------------------------------------------------
-
 <div align="center">
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=20&duration=2400&pause=800&color=9FE870&center=true&vCenter=true&width=600&lines=03+%2F+HOW+I+WORK" alt="How I work animation"/>
-
-<br/>
-
-<img src="https://capsule-render.vercel.app/api?type=transparent&height=100&text=DATA&fontSize=34&fontColor=F5F7FA&fontAlignY=50&animation=twinkling" width="18%"/>
-<img src="https://capsule-render.vercel.app/api?type=transparent&height=100&text=MODEL&fontSize=34&fontColor=F5F7FA&fontAlignY=50&animation=twinkling" width="18%"/>
-<img src="https://capsule-render.vercel.app/api?type=transparent&height=100&text=TEST&fontSize=34&fontColor=F5F7FA&fontAlignY=50&animation=twinkling" width="18%"/>
-<img src="https://capsule-render.vercel.app/api?type=transparent&height=100&text=DEPLOY&fontSize=34&fontColor=F5F7FA&fontAlignY=50&animation=twinkling" width="18%"/>
-<img src="https://capsule-render.vercel.app/api?type=transparent&height=100&text=ITERATE&fontSize=34&fontColor=F5F7FA&fontAlignY=50&animation=twinkling" width="18%"/>
+<img src="https://skillicons.dev/icons?i=apachekafka,spark,docker,kubernetes,mysql,mongodb,git&theme=dark" alt="Data engineering and infrastructure"/>
 </div>
 
-I prefer building things end-to-end:
-
-``` text
-RAW DATA
-   ↓
-CLEANING & VALIDATION
-   ↓
-EXPLORATORY ANALYSIS
-   ↓
-FEATURE ENGINEERING
-   ↓
-STATISTICAL / ML MODELLING
-   ↓
-EVALUATION
-   ↓
-VISUALISATION / DEPLOYMENT
-   ↓
-ACTIONABLE INSIGHT
-```
-
-The goal isn't simply to train a model. The goal is to understand the
-problem, measure what matters, communicate the result and build
-something that can actually be used.
-
-------------------------------------------------------------------------
-
 <div align="center">
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=20&duration=2400&pause=800&color=9FE870&center=true&vCenter=true&width=600&lines=04+%2F+EXPERIENCE+%26+EDUCATION" alt="Experience animation"/>
+
+<img src="https://img.shields.io/badge/ETL-050608?style=for-the-badge&color=9FE870" alt="ETL"/>
+<img src="https://img.shields.io/badge/STREAMING-050608?style=for-the-badge&color=9FE870" alt="Streaming"/>
+<img src="https://img.shields.io/badge/DATA%20PIPELINES-050608?style=for-the-badge&color=9FE870" alt="Data pipelines"/>
+<img src="https://img.shields.io/badge/BIG%20DATA-050608?style=for-the-badge&color=9FE870" alt="Big data"/>
+
 </div>
 
-### Education
-
-**MSc Data Science --- University of Roehampton, London**
-
-Focus: machine learning, quantitative data analysis, statistics, data
-visualisation, AI and applied data science.
-
-**B.E. Information Science & Engineering --- KLS Gogte Institute of
-Technology**
-
-Built a strong foundation in data structures, databases, operating
-systems, networking, programming, information systems and security.
-
-### Experience
-
-Worked across **SOC/security analytics, machine learning, data science
-and software development**, including experience with SIEM platforms,
-predictive modelling, data analysis and application development.
-
-------------------------------------------------------------------------
+### Visualisation
 
 <div align="center">
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=20&duration=2400&pause=800&color=9FE870&center=true&vCenter=true&width=600&lines=05+%2F+GITHUB+SIGNAL" alt="GitHub signal animation"/>
 
-<br/><br/>
+<img src="https://img.shields.io/badge/MATPLOTLIB-050608?style=for-the-badge&logo=matplotlib&logoColor=9FE870" alt="Matplotlib"/>
+<img src="https://img.shields.io/badge/PLOTLY-050608?style=for-the-badge&logo=plotly&logoColor=9FE870" alt="Plotly"/>
+<img src="https://img.shields.io/badge/SEABORN-050608?style=for-the-badge&color=9FE870" alt="Seaborn"/>
+<img src="https://img.shields.io/badge/STREAMLIT-050608?style=for-the-badge&logo=streamlit&logoColor=9FE870" alt="Streamlit"/>
 
-<img src="https://github-readme-stats.vercel.app/api?username=adityavdn&show_icons=true&hide_border=true&bg_color=0B0D10&title_color=F5F7FA&text_color=9AA4B2&icon_color=9FE870&ring_color=9FE870&include_all_commits=true" height="165" alt="GitHub stats"/>
-
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=adityavdn&layout=compact&hide_border=true&bg_color=0B0D10&title_color=F5F7FA&text_color=9AA4B2&icon_color=9FE870" height="165" alt="Top languages"/>
-
-<br/>
-
-<img src="https://streak-stats.demolab.com?user=adityavdn&hide_border=true&background=0B0D10&ring=9FE870&fire=9FE870&currStreakLabel=F5F7FA&sideLabels=9AA4B2&currStreakNum=F5F7FA&sideNums=F5F7FA&dates=697386" height="180" alt="GitHub streak"/>
 </div>
 
-------------------------------------------------------------------------
+### Security Analytics
 
 <div align="center">
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=20&duration=2400&pause=800&color=9FE870&center=true&vCenter=true&width=600&lines=06+%2F+CONTRIBUTION+MOTION" alt="Contribution animation"/>
 
-<br/><br/>
+<img src="https://img.shields.io/badge/SPLUNK-050608?style=for-the-badge&logo=splunk&logoColor=9FE870" alt="Splunk"/>
+<img src="https://img.shields.io/badge/SOPHOS-050608?style=for-the-badge&logo=sophos&logoColor=9FE870" alt="Sophos"/>
+<img src="https://img.shields.io/badge/QRADAR-050608?style=for-the-badge&logo=ibm&logoColor=9FE870" alt="QRadar"/>
+<img src="https://img.shields.io/badge/SIEM-050608?style=for-the-badge&color=9FE870" alt="SIEM"/>
 
-<img src="https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake-dark.svg" alt="Animated GitHub contribution snake" width="100%"/>
 </div>
 
-------------------------------------------------------------------------
+---
 
 <div align="center">
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0B0D10&height=2&section=header" width="70%"/>
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=20&duration=2400&pause=800&color=9FE870&center=true&vCenter=true&width=600&lines=07+%2F+LET'S+CONNECT" alt="Connect animation"/>
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=20&duration=2200&pause=700&color=9FE870&center=true&vCenter=true&width=650&lines=04+%2F%2F+HOW+I+BUILD" alt="How I build"/>
 
-<br/><br/>
+</div>
+
+<div align="center">
+
+**DISCOVER**  
+Problem · Context · Requirements
+
+↓
+
+**EXPLORE**  
+Clean · EDA · Patterns
+
+↓
+
+**BUILD**  
+Features · Models · Pipelines
+
+↓
+
+**EVALUATE**  
+Metrics · Validation · Testing
+
+↓
+
+**DEPLOY**  
+Visualise · Automate · Monitor
+
+</div>
+
+---
+
+<div align="center">
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=20&duration=2200&pause=700&color=9FE870&center=true&vCenter=true&width=650&lines=05+%2F%2F+EXPERIENCE+%26+EDUCATION" alt="Experience and education"/>
+
+</div>
+
+### MSc Data Science — University of Roehampton
+
+**London, United Kingdom**
+
+Machine Learning · Quantitative Data Analysis · Statistics · Artificial Intelligence · Data Visualisation · Applied Data Science
+
+### B.E. Information Science & Engineering — KLS Gogte Institute of Technology
+
+**Belagavi, India**
+
+Data Structures · Database Systems · Operating Systems · Networking · Programming · Information Systems · Security
+
+### Professional Experience
+
+Experience across **SOC/security analytics, machine learning, data science and software development**, including SIEM platforms, predictive modelling, data analysis and application development.
+
+---
+
+<div align="center">
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=20&duration=2200&pause=700&color=9FE870&center=true&vCenter=true&width=650&lines=06+%2F%2F+ACHIEVEMENTS" alt="Achievements"/>
+
+<br><br>
+
+<img src="https://img.shields.io/badge/BEST%20FINAL%20YEAR%20PROJECT-050608?style=for-the-badge&color=9FE870" alt="Best final year project"/>
+<img src="https://img.shields.io/badge/RESEARCH%20PUBLISHED-050608?style=for-the-badge&color=9FE870" alt="Research published"/>
+<img src="https://img.shields.io/badge/3%2B%20HACKATHONS-050608?style=for-the-badge&color=9FE870" alt="Hackathons"/>
+<img src="https://img.shields.io/badge/TECH%20LEADERSHIP-050608?style=for-the-badge&color=9FE870" alt="Technical leadership"/>
+
+</div>
+
+---
+
+<div align="center">
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=20&duration=2200&pause=700&color=9FE870&center=true&vCenter=true&width=650&lines=07+%2F%2F+CURRENTLY+BUILDING" alt="Currently building"/>
+
+</div>
+
+### Real-Time Machine Learning
+
+Building systems where models work with streaming data instead of waiting for a static dataset.
+
+`Kafka` `Spark` `Python` `ML`
+
+### Applied AI
+
+Exploring practical AI systems that move beyond notebooks into usable applications.
+
+`Python` `AI` `APIs` `LLMs`
+
+### Data Engineering
+
+Learning and building reliable pipelines that can move from prototype to production.
+
+`ETL` `Docker` `Cloud` `Data Pipelines`
+
+---
+
+<div align="center">
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=20&duration=2200&pause=700&color=9FE870&center=true&vCenter=true&width=650&lines=08+%2F%2F+GITHUB+SIGNAL" alt="GitHub signal"/>
+
+<br><br>
+
+<img src="https://github-readme-stats.vercel.app/api?username=adityavdn&show_icons=true&hide_border=true&include_all_commits=true&bg_color=050608&title_color=F5F7FA&text_color=8B96A3&icon_color=9FE870&custom_title=ADITYA%20%2F%2F%20GITHUB" width="48%" alt="GitHub statistics"/>
+
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=adityavdn&layout=compact&hide_border=true&langs_count=8&bg_color=050608&title_color=F5F7FA&text_color=8B96A3&custom_title=LANGUAGES" width="40%" alt="Top languages"/>
+
+<br><br>
+
+<img src="https://streak-stats.demolab.com?user=adityavdn&hide_border=true&background=050608&ring=9FE870&fire=9FE870&currStreakLabel=F5F7FA&sideLabels=8B96A3&currStreakNum=F5F7FA&sideNums=F5F7FA&dates=59636E" width="65%" alt="GitHub streak"/>
+
+</div>
+
+---
+
+<div align="center">
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=20&duration=2200&pause=700&color=9FE870&center=true&vCenter=true&width=650&lines=09+%2F%2F+PHILOSOPHY" alt="Philosophy"/>
+
+</div>
+
+<div align="center">
+
+| DATA | BUILD | MEASURE | IMPROVE |
+|:---:|:---:|:---:|:---:|
+| Understand the data | Turn ideas into systems | Let metrics speak | Iterate relentlessly |
+
+</div>
+
+<br>
+
+<div align="center">
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=15&duration=3200&pause=900&color=7C8794&center=true&vCenter=true&width=850&lines=The+best+model+isn't+always+the+most+complex+one.;It's+the+one+that+solves+the+problem." alt="Philosophy quote"/>
+
+</div>
+
+---
+
+<div align="center">
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=20&duration=2200&pause=700&color=9FE870&center=true&vCenter=true&width=650&lines=10+%2F%2F+LET'S+CONNECT" alt="Let's connect"/>
+
+<br><br>
 
 <a href="https://adityamadeaportfolio.netlify.app/">
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=15&duration=2200&pause=800&color=F5F7FA&center=true&vCenter=true&width=500&lines=%5B+EXPLORE+MY+PORTFOLIO+%5D" alt="Portfolio animation"/>
+<img src="https://img.shields.io/badge/VISIT%20MY%20PORTFOLIO-9FE870?style=for-the-badge&logo=vercel&logoColor=050608&labelColor=050608" alt="Portfolio"/>
 </a>
-
-<br/>
 
 <a href="https://www.linkedin.com/in/aditya-vardhan-sivalanka-632499201/">
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=15&duration=2200&pause=800&color=F5F7FA&center=true&vCenter=true&width=500&lines=%5B+CONNECT+ON+LINKEDIN+%5D" alt="LinkedIn animation"/>
+<img src="https://img.shields.io/badge/CONNECT%20ON%20LINKEDIN-9FE870?style=for-the-badge&logo=linkedin&logoColor=050608&labelColor=050608" alt="LinkedIn"/>
 </a>
 
-<br/><br/>
+<br><br>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:2A2F38,50:151A21,100:0B0D10&height=150&section=footer&animation=twinkling" width="100%"/>
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=14&duration=2200&pause=700&color=9FE870&center=true&vCenter=true&width=700&lines=OPEN+TO+INTERESTING+DATA+%26+MACHINE+LEARNING+OPPORTUNITIES" alt="Open to opportunities"/>
 
-<sub>Built with data, curiosity and an unreasonable number of
-notebooks.</sub>
+<br><br>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&height=150&color=0:17212B,50:0B1117,100:050608&section=footer&animation=twinkling" width="100%" alt="Footer"/>
+
+<sub>Built with data, curiosity and an unreasonable number of notebooks.</sub>
 
 </div>
