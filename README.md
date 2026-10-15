@@ -1,13 +1,13 @@
 <div align="center">
 
-<img src="assets/banner.svg" alt="Aditya Vardhan Sivalanka — matrix banner" width="100%">
+<img src="banner.svg" alt="Aditya Vardhan Sivalanka — matrix banner" width="100%">
 
 </div>
 
 <table>
 <tr>
 <td valign="top" width="304">
-<img src="assets/matrix-portrait.png" alt="Matrix-style portrait of Aditya Vardhan Sivalanka" width="304">
+<img src="matrix-portrait.png" alt="Matrix-style portrait of Aditya Vardhan Sivalanka" width="304">
 <pre>
 ╔═[ ACTIVE MODULES ]═══════════════╗
 ║ [01] <a href="https://github.com/adityavdn/uk-data-jobs">uk-data-jobs</a>                ║
@@ -140,6 +140,6 @@
 
 <div align="center">
 
-<img src="assets/footer.svg" alt="connection closed" width="100%">
+<img src="footer.svg" alt="connection closed" width="100%">
 
 </div>
