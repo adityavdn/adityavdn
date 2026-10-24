@@ -138,6 +138,54 @@
 ╚══════════════════════════════════════════════════════════════════════════════════════════╝
 </pre>
 
+<pre>
+╔═[ DATA // ML ARCHIVE  // 11 MODULES ]════════════════════════════════════════════════════╗
+║ ▸ Customer Behaviour Analysis                                                            ║
+║     Big-data analysis of 1M+ e-commerce transactions with PySpark: segmentation          ║
+║     repo : <a href="https://github.com/adityavdn/Big-Data-Customer-Behaviour-Analysis">github.com/adityavdn/Big-Data-Customer-Behaviour-Analysis</a>                     ║
+╠══════════════════════════════════════════════════════════════════════════════════════════╣
+║ ▸ Belarus Car Price Prediction                                                           ║
+║     Regression model estimating used-car prices from 30K+ vehicle records.               ║
+║     repo : <a href="https://github.com/adityavdn/Belarus-Car-Price-Prediction">github.com/adityavdn/Belarus-Car-Price-Prediction</a>                             ║
+╠══════════════════════════════════════════════════════════════════════════════════════════╣
+║ ▸ Breast Cancer Prediction                                                               ║
+║     Classifier distinguishing malignant vs benign tumours (94%+ accuracy).               ║
+║     repo : <a href="https://github.com/adityavdn/Breast-Cancer-Prediction">github.com/adityavdn/Breast-Cancer-Prediction</a>                                 ║
+╠══════════════════════════════════════════════════════════════════════════════════════════╣
+║ ▸ Calgary Crime Neural Network                                                           ║
+║     Neural network forecasting Calgary crime rates from 2018-2024 time-series.           ║
+║     repo : <a href="https://github.com/adityavdn/Calgary-Crime-Data-Analysis-and-Neural-Network-Model">github.com/adityavdn/Calgary-Crime-Data-Analysis-and-Neural-Network-Model</a>     ║
+╠══════════════════════════════════════════════════════════════════════════════════════════╣
+║ ▸ Pima Diabetes Prediction                                                               ║
+║     Diabetes classifier from patient health indicators (88-92% accuracy).                ║
+║     repo : <a href="https://github.com/adityavdn/Pima-Indians-Diabetes-Prediction">github.com/adityavdn/Pima-Indians-Diabetes-Prediction</a>                         ║
+╠══════════════════════════════════════════════════════════════════════════════════════════╣
+║ ▸ Red Wine Quality                                                                       ║
+║     Classification model scoring red wine quality from physicochemical data.             ║
+║     repo : <a href="https://github.com/adityavdn/Red-Wine-Quality">github.com/adityavdn/Red-Wine-Quality</a>                                         ║
+╠══════════════════════════════════════════════════════════════════════════════════════════╣
+║ ▸ Room Occupancy Detection                                                               ║
+║     Binary classifier predicting room occupancy from sensor data (92%+).                 ║
+║     repo : <a href="https://github.com/adityavdn/Room-Occupancy-Detection">github.com/adityavdn/Room-Occupancy-Detection</a>                                 ║
+╠══════════════════════════════════════════════════════════════════════════════════════════╣
+║ ▸ Spyware Research Tool                                                                  ║
+║     Cybersecurity major project: a sandboxed data-exfiltration study.                    ║
+║     repo : <a href="https://github.com/adityavdn/Major-project-">github.com/adityavdn/Major-project-</a>                                           ║
+╠══════════════════════════════════════════════════════════════════════════════════════════╣
+║ ▸ Salary Prediction                                                                      ║
+║     Income classifier over 32K+ records with fairness-aware analysis.                    ║
+║     repo : <a href="https://github.com/adityavdn/Salary-Prediction">github.com/adityavdn/Salary-Prediction</a>                                        ║
+╠══════════════════════════════════════════════════════════════════════════════════════════╣
+║ ▸ Telecom Customer Churn Prediction                                                      ║
+║     Predictive model identifying telecom customers at risk of churning.                  ║
+║     repo : <a href="https://github.com/adityavdn/Telecom-Customer-Churn-Prediction">github.com/adityavdn/Telecom-Customer-Churn-Prediction</a>                        ║
+╠══════════════════════════════════════════════════════════════════════════════════════════╣
+║ ▸ Warranty Claims Fraud Prediction                                                       ║
+║     Fraud-detection model flagging suspicious warranty claims (87-91%).                  ║
+║     repo : <a href="https://github.com/adityavdn/Warranty-Claims-Fraud-Prediction">github.com/adityavdn/Warranty-Claims-Fraud-Prediction</a>                         ║
+╚══════════════════════════════════════════════════════════════════════════════════════════╝
+</pre>
+
 <div align="center">
 
 <img src="footer.svg" alt="connection closed" width="100%">
