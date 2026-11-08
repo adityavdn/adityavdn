@@ -13,9 +13,11 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from cards import build_section  # noqa: E402
-from city import build_city  # noqa: E402
+from city import TIE, build_city  # noqa: E402
+from extras import build_crawl, build_footer, build_saber  # noqa: E402
 from data import fetch_calendar, fetch_pinned, fetch_repos, token_from_env  # noqa: E402
 from hero import build_hero  # noqa: E402
+from stats import build_stats  # noqa: E402
 
 RAW = "https://raw.githubusercontent.com/{user}/{user}/output"
 START, END = "<!-- PINNED:START -->", "<!-- PINNED:END -->"
@@ -66,6 +68,12 @@ def main():
     files = {
         "hero.svg": build_hero(cfg["name"], cfg["role"], cfg["tagline"], seed),
         "city.svg": build_city(user, total, days, args.sprites, seed, today),
+        "stats.svg": build_stats(user, total, days, seed),
+        "crawl.svg": build_crawl([tuple(l) for l in cfg["crawl"]]),
+        "saber-blue.svg": build_saber("blue"),
+        "saber-red.svg": build_saber("red", flip=True),
+        "saber-green.svg": build_saber("green"),
+        "footer.svg": build_footer(user, TIE),
         **build_section({k: [tuple(i) for i in v] for k, v in cfg["skills"].items()}, repos),
     }
     for name, svg in files.items():

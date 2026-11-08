@@ -1,19 +1,204 @@
 {
   "user": "adityavdn",
   "name": "Aditya Vardhan Sivalanka",
-  "role": "Data Scientist  ·  ML Engineer  ·  Software Engineer",
-  "tagline": "London, UK  ·  raw data → models → shipped products",
-  "fallback_repos": ["uk-data-jobs", "llm-eval", "private-search", "my-database", "my-redis", "expense-sorter"],
+  "role": "Data Scientist  \u00b7  ML Engineer  \u00b7  Software Engineer",
+  "tagline": "London, UK  \u00b7  raw data \u2192 models \u2192 shipped products",
+  "fallback_repos": [
+    "uk-data-jobs",
+    "llm-eval",
+    "private-search",
+    "my-database",
+    "my-redis",
+    "expense-sorter"
+  ],
   "skills": {
-    "Languages": [["JavaScript", "javascript"], ["TypeScript", "typescript"], ["Python", "python"],
-                  ["Java", "openjdk"], ["C++", "cplusplus"], ["PHP", "php"]],
-    "Frontend": [["React", "react"], ["Next.js", "nextdotjs"], ["HTML", "html5"], ["CSS", "css3"],
-                 ["Tailwind", "tailwindcss"], ["Bootstrap", "bootstrap"]],
-    "Backend & data": [["Node.js", "nodedotjs"], ["Express", "express"], ["MySQL", "mysql"],
-                       ["Postgres", "postgresql"], ["MongoDB", "mongodb"], ["Redis", "redis"], ["SQLite", "sqlite"]],
-    "Cloud & DevOps": [["Docker", "docker"], ["Kubernetes", "kubernetes"], ["AWS", "amazonwebservices"],
-                       ["GCP", "googlecloud"], ["Azure", "microsoftazure"], ["Jenkins", "jenkins"]],
-    "Tools": [["Git", "git"], ["VS Code", "visualstudiocode"], ["Figma", "figma"], ["Postman", "postman"],
-              ["Webpack", "webpack"], ["Vite", "vite"]]
-  }
+    "Languages": [
+      [
+        "JavaScript",
+        "javascript"
+      ],
+      [
+        "TypeScript",
+        "typescript"
+      ],
+      [
+        "Python",
+        "python"
+      ],
+      [
+        "Java",
+        "openjdk"
+      ],
+      [
+        "C++",
+        "cplusplus"
+      ],
+      [
+        "PHP",
+        "php"
+      ]
+    ],
+    "Frontend": [
+      [
+        "React",
+        "react"
+      ],
+      [
+        "Next.js",
+        "nextdotjs"
+      ],
+      [
+        "HTML",
+        "html5"
+      ],
+      [
+        "CSS",
+        "css3"
+      ],
+      [
+        "Tailwind",
+        "tailwindcss"
+      ],
+      [
+        "Bootstrap",
+        "bootstrap"
+      ]
+    ],
+    "Backend & data": [
+      [
+        "Node.js",
+        "nodedotjs"
+      ],
+      [
+        "Express",
+        "express"
+      ],
+      [
+        "MySQL",
+        "mysql"
+      ],
+      [
+        "Postgres",
+        "postgresql"
+      ],
+      [
+        "MongoDB",
+        "mongodb"
+      ],
+      [
+        "Redis",
+        "redis"
+      ],
+      [
+        "SQLite",
+        "sqlite"
+      ]
+    ],
+    "Cloud & DevOps": [
+      [
+        "Docker",
+        "docker"
+      ],
+      [
+        "Kubernetes",
+        "kubernetes"
+      ],
+      [
+        "AWS",
+        "amazonwebservices"
+      ],
+      [
+        "GCP",
+        "googlecloud"
+      ],
+      [
+        "Azure",
+        "microsoftazure"
+      ],
+      [
+        "Jenkins",
+        "jenkins"
+      ]
+    ],
+    "Tools": [
+      [
+        "Git",
+        "git"
+      ],
+      [
+        "VS Code",
+        "visualstudiocode"
+      ],
+      [
+        "Figma",
+        "figma"
+      ],
+      [
+        "Postman",
+        "postman"
+      ],
+      [
+        "Webpack",
+        "webpack"
+      ],
+      [
+        "Vite",
+        "vite"
+      ]
+    ]
+  },
+  "crawl": [
+    [
+      "EPISODE I",
+      "episode"
+    ],
+    [
+      "THE DATA AWAKENS",
+      "title"
+    ],
+    [
+      "",
+      "gap"
+    ],
+    [
+      "It is a period of noisy data.",
+      "body"
+    ],
+    [
+      "From a base in London, a lone",
+      "body"
+    ],
+    [
+      "data scientist builds systems",
+      "body"
+    ],
+    [
+      "end to end: from raw data,",
+      "body"
+    ],
+    [
+      "through analysis and modelling,",
+      "body"
+    ],
+    [
+      "to tools people actually use.",
+      "body"
+    ],
+    [
+      "",
+      "gap"
+    ],
+    [
+      "Predictive analytics, data",
+      "body"
+    ],
+    [
+      "engineering and applied AI",
+      "body"
+    ],
+    [
+      "are the weapons of choice....",
+      "body"
+    ]
+  ]
 }
