@@ -1,0 +1,37 @@
+name: Build London city
+
+on:
+  schedule:
+    - cron: "17 3 * * *"   # daily, 03:17 UTC
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["scripts/**", "sprites/**", "profile.json", ".github/workflows/city.yml"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow==11.0.0
+      - name: Build SVGs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/build.py --config profile.json --sprites sprites --out dist
+      - name: Publish to the output branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd dist
+          git init -q -b output
+          git add -A
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "chore: rebuild London city"
+          git push -f "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" output

@@ -1,0 +1,15 @@
+{
+  "user": "adityavdn",
+  "name": "Aditya Vardhan Sivalanka",
+  "role": "Data Scientist  ·  ML Engineer  ·  Software Engineer",
+  "tagline": "London, UK  ·  raw data → models → shipped products",
+  "now": "MSc student · Roehampton, London",
+  "repos": ["uk-data-jobs", "llm-eval", "private-search", "my-database", "my-redis", "expense-sorter"],
+  "skills": {
+    "Languages": ["js", "ts", "py", "java", "cpp", "php"],
+    "Frontend": ["react", "nextjs", "html", "css", "tailwind", "bootstrap"],
+    "Backend & data": ["nodejs", "express", "mysql", "postgres", "mongodb", "redis", "sqlite"],
+    "Cloud & DevOps": ["docker", "kubernetes", "aws", "gcp", "azure", "jenkins"],
+    "Tools": ["git", "vscode", "figma", "postman", "webpack", "vite"]
+  }
+}
