@@ -7,7 +7,7 @@ import html
 import json
 import re
 import sys
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -89,7 +89,7 @@ def main():
     print(f"{total} contributions, {sum(d.count > 0 for d in days)} active days, "
           f"{len(repos)} repos: {', '.join(r.name for r in repos)}")
     if args.readme:
-        update_readme(Path(args.readme), user, repos, today.strftime("%Y%m%d"))
+        update_readme(Path(args.readme), user, repos, datetime.now(timezone.utc).strftime("%Y%m%d%H%M"))
 
 
 if __name__ == "__main__":
