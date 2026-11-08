@@ -35,11 +35,16 @@ jobs:
               -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
               commit -q -m "chore: rebuild profile images"
           git push -f "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" output
-      - name: Commit README if the pinned repos changed
+          echo "OUTPUT_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+      - name: Pin README images to this build
+        # A commit-SHA URL never changes content, so GitHub's image proxy can't serve a stale copy.
+        run: |
+          sed -E -i "s#(raw\.githubusercontent\.com/${{ github.repository }}/)[^/]+/([^\"?]+\.svg)#\1${OUTPUT_SHA}/\2#g" README.md
+      - name: Commit README if it changed
         run: |
           if ! git diff --quiet README.md; then
             git -c user.name="github-actions[bot]" \
                 -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-                commit -m "chore: sync pinned repos in README" README.md
+                commit -m "chore: point README at latest profile images" README.md
             git push origin HEAD:main
           fi

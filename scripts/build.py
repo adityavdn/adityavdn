@@ -26,15 +26,15 @@ START, END = "<!-- PINNED:START -->", "<!-- PINNED:END -->"
 def pinned_block(user, repos, stamp):
     base = RAW.format(user=user)
     links = "\n".join(
-        f'<a href="{r.url}"><img src="{base}/repo-{r.name}.svg?v={stamp}" width="49%" alt="{html.escape(r.name + ': ' + r.description, quote=True)}" /></a>'
+        f'<a href="{r.url}"><img src="{base}/repo-{r.name}.svg" width="49%" alt="{html.escape(r.name + ': ' + r.description, quote=True)}" /></a>'
         for r in repos)
     return f"{START}\n{links}\n{END}"
 
 
 def bust_cache(text, user, stamp):
-    """GitHub's image proxy caches by URL, so stamp every image with the build date."""
+    """Drop old ?v= stamps; the workflow pins image URLs to the output commit SHA instead."""
     base = re.escape(RAW.format(user=user))
-    return re.sub(base + r'(/[^"?\s]+\.svg)(\?v=\d+)?', lambda m: f"{RAW.format(user=user)}{m.group(1)}?v={stamp}", text)
+    return re.sub(base + r'(/[^"?\s]+\.svg)(\?v=\d+)?', lambda m: f"{RAW.format(user=user)}{m.group(1)}", text)
 
 
 def update_readme(path, user, repos, stamp):
