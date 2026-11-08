@@ -30,4 +30,6 @@
 
 <img src="https://raw.githubusercontent.com/adityavdn/adityavdn/01c82fea02209f08ced5091544aaedbe22373f14/footer.svg" width="100%" alt="May the source be with you" />
 
+<sub>Want a profile like this? It is open source: <a href="https://github.com/adityavdn/galactic-profile"><b>galactic-profile</b></a>, a template that builds itself every day.</sub>
+
 </div>
