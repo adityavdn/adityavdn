@@ -1,78 +1,147 @@
-"""Toolkit card and repo cards in the same night-glass style."""
-import base64
-import random
+"""Toolkit and pinned-repo cards that share one Death Star backdrop.
+
+The toolkit frames the whole station on the left; every repo card frames it large
+on the right, so any newly pinned repo gets the same backdrop automatically.
+"""
+import re
 import textwrap
 
-from data import fetch_text
-from theme import AMBER, FONT, INK, MONO, SUB, esc, glass_panel, sky_defs, stars, svg_doc
+import numpy as np
+from PIL import Image, ImageEnhance
 
-LANG_COLORS = {"Python": "#3572A5", "HTML": "#e34c26", "Jupyter Notebook": "#DA5B0B",
-               "JavaScript": "#f1e05a", "TypeScript": "#3178c6", "Java": "#b07219",
-               "C++": "#f34b7d", "PHP": "#4F5D95", "CSS": "#663399"}
-ICON_URL = "https://skillicons.dev/icons?i={ids}&theme=dark"
-ICON_H = 40
+from scene import to_data_uri
+from theme import INK, MUTED, ROOT, SANS, esc, svg_doc
 
-
-def _night(w, h, seed):
-    rng = random.Random(seed)
-    return (f'<rect width="{w}" height="{h}" fill="url(#sky)"/>'
-            f'<ellipse cx="{w*0.7}" cy="{h}" rx="{w*0.6}" ry="{h*0.7}" fill="url(#glow)"/>'
-            + stars(rng, w, 8, h - 8, max(12, w // 30)))
+W = 1200
+TOOLKIT_H = 340
+CARD_W, CARD_H = 590, 190
+CARD_RADIUS = 22
+SRC = ROOT / "assets" / "deathstar.jpg"
+ICON_DIR = ROOT / "assets" / "icons"
+FONTS = (("Inter", 400), ("Inter", 600), ("Inter", 800))
 
 
-def _icon_row(ids, x, y):
-    svg = fetch_text(ICON_URL.format(ids=",".join(ids)))
-    if not svg:
-        chips = "  ·  ".join(ids)
-        return f'<text x="{x}" y="{y+26}" font-family="{MONO}" font-size="14" fill="{INK}">{esc(chips)}</text>'
-    width = ICON_H * (len(ids) * 300 - 44) / 256
-    b64 = base64.b64encode(svg.encode()).decode()
-    return (f'<image x="{x}" y="{y}" width="{width:.1f}" height="{ICON_H}" '
-            f'href="data:image/svg+xml;base64,{b64}"/>')
+ART_SCALE, ART_X, ART_Y = .48, 70, -10   # puts the whole sphere inside the toolkit band
 
 
-def build_skills(groups, note, seed):
-    w, cols, cell_w, cell_h, top = 1200, 3, 372, 104, 92
-    rows = -(-(len(groups) + 1) // cols)
-    h = top + rows * cell_h + 26
-    cells = []
-    for i, (label, ids) in enumerate(list(groups.items())):
-        x, y = 30 + (i % cols) * (cell_w + 12), top + (i // cols) * cell_h
-        cells.append(glass_panel(x, y, cell_w, cell_h - 12, 20)
-                     + f'<text x="{x+20}" y="{y+28}" font-family="{MONO}" font-size="12" '
-                       f'font-weight="700" letter-spacing="2.5" fill="{AMBER}">{esc(label.upper())}</text>'
-                     + _icon_row(ids, x + 20, y + 40))
-    i = len(groups)
-    x, y = 30 + (i % cols) * (cell_w + 12), top + (i // cols) * cell_h
-    cells.append(glass_panel(x, y, cell_w, cell_h - 12, 20)
-                 + f'<text x="{x+20}" y="{y+28}" font-family="{MONO}" font-size="12" font-weight="700" '
-                   f'letter-spacing="2.5" fill="{AMBER}">RIGHT NOW</text>'
-                 + f'<text x="{x+20}" y="{y+62}" font-family="{FONT}" font-size="17" font-weight="600" '
-                   f'fill="{INK}">{esc(note)}</text>')
-    head = (f'<text x="40" y="52" font-family="{FONT}" font-size="28" font-weight="800" '
-            f'letter-spacing="-.5" fill="{INK}">Toolkit</text>'
-            f'<text x="148" y="52" font-family="{FONT}" font-size="15" fill="{SUB}">'
-            f'what the city is built with</text>')
-    return svg_doc(w, h, _night(w, h, seed) + head + "".join(cells), "", sky_defs(h, h * 0.92), "Toolkit")
+def _fade_mask(w, h, ramp):
+    m = np.ones((h, w), np.float32)
+    m[-ramp:] *= np.linspace(1, 0, ramp)[:, None]
+    m[:, -ramp:] *= np.linspace(1, 0, ramp)[None, :]
+    m[:, :ramp] *= np.linspace(0, 1, ramp)[None, :]
+    return Image.fromarray((m * 255).astype(np.uint8), "L")
 
 
-def build_repo(repo, seed):
-    w, h = 590, 176
-    lines = textwrap.wrap(repo.description or "No description yet.", 62)[:2]
-    if len(textwrap.wrap(repo.description or "", 62)) > 2:
-        lines[-1] = lines[-1].rstrip(".,; ") + "…"
-    desc = "".join(f'<text x="30" y="{88+i*22}" font-family="{FONT}" font-size="15" fill="{SUB}">'
+def canvas():
+    total_h = TOOLKIT_H
+    src = Image.open(SRC).convert("RGB")
+    size = (round(src.width * ART_SCALE), round(src.height * ART_SCALE))
+    art = src.resize(size, Image.LANCZOS)
+    tile = src.crop((1100, 0, src.width, src.height)).resize(
+        (round((src.width - 1100) * ART_SCALE), size[1]), Image.LANCZOS)
+    out = Image.new("RGB", (W, total_h), (0, 0, 0))
+    for y in range(0, total_h, tile.height):
+        for x in range(0, W, tile.width):
+            flip = (y // tile.height + x // tile.width) % 2
+            out.paste(tile.transpose(Image.FLIP_TOP_BOTTOM) if flip else tile, (x, y))
+    out.paste(art, (ART_X, ART_Y), _fade_mask(*size, 90))
+    return out
+
+
+SPHERE = (560, 415)        # station centre in the source image
+
+
+def repo_backdrop(w, h, scale=.5):
+    src = Image.open(SRC).convert("RGB")
+    size = (round(src.width * scale), round(src.height * scale))
+    art = src.resize(size, Image.LANCZOS)
+    tile = src.crop((1100, 0, src.width, src.height)).resize(
+        (round((src.width - 1100) * scale), size[1]), Image.LANCZOS)
+    out = Image.new("RGB", (w, h), (0, 0, 0))
+    for x in range(0, w, tile.width):
+        out.paste(tile, (x, 0))
+    ox = round(w - 130 - SPHERE[0] * scale)
+    oy = round(h / 2 - SPHERE[1] * scale)
+    out.paste(art, (ox, oy), _fade_mask(*size, 120))
+    return out
+
+
+def _slice(img, rect, dim):
+    x, y, w, h = rect
+    piece = img.crop((x, y, x + w, y + h))
+    return to_data_uri(ImageEnhance.Brightness(piece).enhance(dim), "JPEG", 84)
+
+
+def _icon(slug, x, y, size, color="#e9edf6"):
+    path = ICON_DIR / f"{slug}.svg"
+    if not path.exists():
+        return f'<circle cx="{x+size/2}" cy="{y+size/2}" r="{size/5}" fill="{color}"/>'
+    d = re.search(r'<path d="([^"]+)"', path.read_text())
+    if not d:
+        return ""
+    return f'<path transform="translate({x} {y}) scale({size/24:.4f})" d="{d.group(1)}" fill="{color}"/>'
+
+
+def build_toolkit(groups, art):
+    bg = _slice(art, (0, 0, W, TOOLKIT_H), .95)
+    x0, label_w, cell_w, row_h, top = 548, 104, 74, 45, 104
+    rows = []
+    for r, (label, items) in enumerate(groups.items()):
+        y = top + r * row_h
+        rows.append(f'<text x="{x0}" y="{y+16}" font-family="{SANS}" font-size="11" font-weight="600" '
+                    f'letter-spacing="1.6" fill="{MUTED}">{esc(label.upper())}</text>')
+        for c, (name, slug) in enumerate(items):
+            cx = x0 + label_w + c * cell_w + cell_w / 2
+            rows.append(_icon(slug, cx - 10, y, 20)
+                        + f'<text x="{cx}" y="{y+37}" text-anchor="middle" font-family="{SANS}" '
+                          f'font-size="10.5" fill="#c3cad9">{esc(name)}</text>')
+    head = (f'<text x="{x0}" y="64" font-family="{SANS}" font-size="30" font-weight="800" letter-spacing="-.6" '
+            f'fill="{INK}">Stack</text><text x="{x0+96}" y="64" font-family="{SANS}" font-size="15" '
+            f'fill="{MUTED}">languages, frameworks and tools I ship with</text>'
+            f'<rect x="{x0}" y="82" width="{W-x0-40}" height="1" fill="#fff" opacity=".12"/>')
+    body = (f'<image href="{bg}" width="{W}" height="{TOOLKIT_H}"/>'
+            '<rect width="1200" height="340" fill="url(#rfade)"/>' + head + "".join(rows))
+    fade = ('<linearGradient id="rfade" x1="0" y1="0" x2="1" y2="0"><stop offset=".38" stop-color="#000" '
+            'stop-opacity="0"/><stop offset=".6" stop-color="#000" stop-opacity=".55"/></linearGradient>')
+    return svg_doc(W, TOOLKIT_H, body, "", fade, "Stack", FONTS, CARD_RADIUS)
+
+
+def build_repo(repo, index, bg_img):
+    w, h = bg_img.size
+    bg = _slice(bg_img, (0, 0, w, h), .8)
+    lines = textwrap.wrap(repo.description, 66)
+    if len(lines) > 2:
+        lines = lines[:2]
+        lines[-1] = lines[-1].rstrip(".,;: ") + "…"
+    desc = "".join(f'<text x="30" y="{106+i*21}" font-family="{SANS}" font-size="14.5" fill="#bcc4d6">'
                    f'{esc(t)}</text>' for i, t in enumerate(lines))
-    color = LANG_COLORS.get(repo.language, "#8b949e")
-    lang = (f'<circle cx="36" cy="146" r="6" fill="{color}"/><text x="50" y="151" font-family="{FONT}" '
-            f'font-size="14" fill="{INK}">{esc(repo.language or "Code")}</text>')
-    meta = (f'<text x="{60+len(repo.language or "Code")*8.2:.0f}" y="151" font-family="{FONT}" font-size="14" '
-            f'fill="{SUB}">★ {repo.stars}   ⑂ {repo.forks}</text>')
-    book = ('<path d="M30 34h10a4 4 0 0 1 4 4v18a3 3 0 0 0-3-3H30zM58 34H48a4 4 0 0 0-4 4v18a3 3 0 0 1 3-3h11z" '
-            f'fill="none" stroke="{AMBER}" stroke-width="2" stroke-linejoin="round"/>')
-    body = (_night(w, h, seed) + glass_panel(10, 10, w - 20, h - 20, 26) + book
-            + f'<text x="70" y="52" font-family="{FONT}" font-size="21" font-weight="700" fill="{INK}">'
-              f'{esc(repo.name)}</text>' + desc + lang + meta
-            + f'<text x="{w-34}" y="151" text-anchor="end" font-family="{FONT}" font-size="14" '
-              f'font-weight="600" fill="{AMBER}">Open ›</text>')
-    return svg_doc(w, h, body, "", sky_defs(h, h * 0.95), repo.name)
+    lang = repo.language or "Code"
+    color = repo.color or "#8b949e"
+    stats_x = 54 + len(lang) * 7.6
+    name_size = min(23, (w - 130) / (len(repo.name) * .6))
+    body = (f'<image href="{bg}" width="{w}" height="{h}"/>'
+            f'<rect width="{w}" height="{h}" fill="url(#cfade)"/>'
+            f'<text x="30" y="40" font-family="{SANS}" font-size="12.5" font-weight="600" letter-spacing="1.5" '
+            f'fill="{MUTED}">{index:02d}</text><rect x="56" y="35" width="26" height="1" fill="{MUTED}" opacity=".6"/>'
+            f'<text x="30" y="76" font-family="{SANS}" font-size="{name_size:.1f}" font-weight="800" letter-spacing="-.4" '
+            f'fill="{INK}">{esc(repo.name)}</text>{desc}'
+            f'<circle cx="36" cy="161" r="5" fill="{color}"/><text x="48" y="166" font-family="{SANS}" '
+            f'font-size="13.5" fill="#dde3ee">{esc(lang)}</text>'
+            f'<text x="{stats_x:.0f}" y="166" font-family="{SANS}" font-size="13.5" fill="{MUTED}">'
+            f'★ {repo.stars}    ⑂ {repo.forks}</text>'
+            f'<circle cx="{w-46}" cy="{h-38}" r="17" fill="#000" fill-opacity=".35" stroke="#fff" stroke-opacity=".3"/>'
+            f'<path d="M{w-52} {h-32}l12-12M{w-49} {h-44}h9v9" fill="none" stroke="{INK}" stroke-width="1.6" '
+            f'stroke-linecap="round" stroke-linejoin="round"/>')
+    fade = ('<linearGradient id="cfade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" '
+            'stop-opacity=".8"/><stop offset=".55" stop-color="#000" stop-opacity=".35"/>'
+            '<stop offset=".85" stop-color="#000" stop-opacity="0"/></linearGradient>')
+    return svg_doc(w, h, body, "", fade, repo.name, FONTS, CARD_RADIUS)
+
+
+def build_section(groups, repos):
+    """Return {filename: svg} for the toolkit and every repo card."""
+    files = {"skills.svg": build_toolkit(groups, canvas())}
+    card_bg = repo_backdrop(CARD_W, CARD_H)
+    for i, repo in enumerate(repos, start=1):
+        files[f"repo-{repo.name}.svg"] = build_repo(repo, i, card_bg)
+    return files

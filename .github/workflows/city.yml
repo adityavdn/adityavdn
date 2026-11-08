@@ -1,4 +1,4 @@
-name: Build London city
+name: Build profile city
 
 on:
   schedule:
@@ -19,11 +19,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install pillow==11.0.0
+      - run: pip install pillow==11.0.0 numpy==2.1.3
       - name: Build SVGs
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/build.py --config profile.json --sprites sprites --out dist
+        run: python scripts/build.py --config profile.json --sprites sprites --out dist --readme README.md
       - name: Publish to the output branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -33,5 +33,13 @@ jobs:
           git add -A
           git -c user.name="github-actions[bot]" \
               -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-              commit -q -m "chore: rebuild London city"
+              commit -q -m "chore: rebuild profile images"
           git push -f "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" output
+      - name: Commit README if the pinned repos changed
+        run: |
+          if ! git diff --quiet README.md; then
+            git -c user.name="github-actions[bot]" \
+                -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+                commit -m "chore: sync pinned repos in README" README.md
+            git push origin HEAD:main
+          fi

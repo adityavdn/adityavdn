@@ -28,6 +28,7 @@ class Repo:
     stars: int
     forks: int
     url: str
+    color: str = ""
 
 
 def _request(url, token=None, body=None, accept="application/json"):
@@ -96,6 +97,24 @@ def fetch_repos(user, names, token=None):
         repos.append(Repo(r["name"], r.get("description") or "", r.get("language") or "",
                           r.get("stargazers_count", 0), r.get("forks_count", 0), r["html_url"]))
     return repos
+
+
+def fetch_pinned(user, token):
+    """Pinned repositories in profile order (needs any token; returns [] on failure)."""
+    if not token:
+        return []
+    query = """query($u:String!){user(login:$u){pinnedItems(first:6,types:REPOSITORY){nodes{
+      ... on Repository{name description url stargazerCount forkCount primaryLanguage{name color}}}}}}"""
+    try:
+        raw = json.loads(_request(f"{API}/graphql", token, {"query": query, "variables": {"u": user}}))
+        nodes = raw["data"]["user"]["pinnedItems"]["nodes"]
+    except Exception as err:
+        print(f"Pinned repos fetch failed: {err}")
+        return []
+    return [Repo(n["name"], n.get("description") or "",
+                 (n.get("primaryLanguage") or {}).get("name", ""), n["stargazerCount"], n["forkCount"],
+                 n["url"], (n.get("primaryLanguage") or {}).get("color") or "")
+            for n in nodes if n]
 
 
 def fetch_text(url):
