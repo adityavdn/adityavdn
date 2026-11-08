@@ -6,7 +6,7 @@
 
 <img src="https://raw.githubusercontent.com/adityavdn/adityavdn/d72663a168f79b27a1ce977d46a965223d012fb4/crawl.svg" width="100%" alt="Opening crawl: a data scientist in London building systems end to end, from raw data through modelling to tools people use" />
 
-<a href="https://github.com/adityavdn?tab=repositories"><img src="https://raw.githubusercontent.com/adityavdn/adityavdn/d72663a168f79b27a1ce977d46a965223d012fb4/city.svg" width="100%" alt="Contribution city: a floating Imperial platform in space, one tower rises for every week I contributed this year" /></a>
+<a href="https://github.com/adityavdn?tab=repositories"><img src="https://raw.githubusercontent.com/adityavdn/adityavdn/d72663a168f79b27a1ce977d46a965223d012fb4/city.svg" width="100%" alt="Contribution city: a floating Imperial platform in space, one tower rises for every day I contributed this year" /></a>
 
 <img src="https://raw.githubusercontent.com/adityavdn/adityavdn/d72663a168f79b27a1ce977d46a965223d012fb4/stats.svg" width="100%" alt="Contribution stats: totals, active days, busiest day, streaks and weekly activity" />
 

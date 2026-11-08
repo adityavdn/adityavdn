@@ -1,4 +1,4 @@
-"""Contribution city: a floating Imperial platform in deep space, one tower per week.
+"""Contribution city: a floating Imperial platform in deep space, one tower per active day.
 
 The platform photo is warped onto a true perspective view (the near end is bigger),
 towers scale with depth, rise in a ripple from a random point each day, and the
@@ -8,8 +8,7 @@ import base64
 import io
 import math
 import random
-from collections import defaultdict
-from datetime import date, timedelta
+from datetime import date
 from pathlib import Path
 
 import numpy as np
@@ -26,8 +25,8 @@ SRC_QUAD = [(7, 70), (1188, 203), (1330, 102), (260, 3)]          # FL, FR, BR, 
 DST_QUAD = [(30, 250), (960, 560), (1170, 455), (165, 186)]
 # Grid area on the top face, in face coordinates (u along the length, v front -> back).
 U0, U1 = .035, .84                        # the landing pad at the near end stays clear
-ROW_V = (.33, .7)                         # two staggered rows: odd weeks front, even weeks back
-TOWER_SCALE = .98                         # sprite pixels -> scene pixels at the near end
+ROW_V = (.12, .88)                        # weekday rows from front (Sunday) to back (Saturday)
+TOWER_SCALE = .64                         # sprite pixels -> scene pixels at the near end
 LEVEL_SCALE = {1: .6, 2: .74, 3: .87, 4: 1.0}
 CYCLE_S = 22
 RISE_END_PCT = {1: 5.5, 2: 7, 3: 8.5, 4: 10.5}
@@ -111,38 +110,21 @@ def _bag(ids, user, k):
     return _BAGS[key]
 
 
-def sprite_for(week_start, ids, user):
-    """Stable per calendar week: every run of len(ids) weeks uses each tower once, no back-to-back repeats."""
-    idx = (week_start - ANCHOR).days // 7
+def sprite_for(day, ids, user):
+    """Stable per date: every run of len(ids) days uses each tower once, no back-to-back repeats."""
+    idx = (day - ANCHOR).days
     n = len(ids)
     return _bag(tuple(sorted(ids)), user, idx // n)[idx % n]
 
 
-def weeks_of(days):
-    """[(week index, first date, total, level 1-4)] for weeks with any contributions."""
-    totals, first = defaultdict(int), {}
-    for d in days:
-        totals[d.week] += d.count
-        first.setdefault(d.week, date.fromisoformat(d.date) - timedelta(days=d.weekday))
-    active = sorted(v for v in totals.values() if v > 0)
-    if not active:
-        return []
-    cuts = [active[int(len(active) * q)] for q in (.25, .5, .75)]
-    out = []
-    for w in sorted(totals):
-        t = totals[w]
-        if t > 0:
-            out.append((w, first[w], t, 1 + sum(t > c for c in cuts)))
-    return out
-
 
 def ripple(rng, n_weeks):
-    ew, er = rng.uniform(4, n_weeks - 4), rng.choice((0, 1))
+    ew, er = rng.uniform(4, n_weeks - 4), rng.uniform(0, 6)
     phase = rng.uniform(0, math.tau)
 
     def delay(week, row):
-        dist = math.hypot(week - ew, (row - er) * 3)
-        return .4 + dist * .32 + .3 * math.sin(week * .7 + phase) + rng.uniform(0, .2)
+        dist = math.hypot(week - ew, (row - er) * 1.4)
+        return .4 + dist * .24 + .3 * math.sin(week * .7 + phase) + rng.uniform(0, .2)
     return delay
 
 
@@ -184,7 +166,7 @@ def tower(sid, size, u, v, level, delay, sway_delay):
 
 def smoke(rng, tops):
     out = []
-    for x, y, s in rng.sample(tops, min(14, len(tops))):
+    for x, y, s in rng.sample(tops, min(22, len(tops))):
         r = 7 * s / TOWER_SCALE
         out.append(f'<ellipse class="smoke" style="animation-delay:{rng.uniform(0, 7):.2f}s" cx="{x+rng.uniform(-8, 8)*s:.1f}" '
                    f'cy="{y:.1f}" rx="{r:.1f}" ry="{r*.8:.1f}" fill="url(#puff)"/>')
@@ -231,27 +213,28 @@ def build_city(user, total, days, sprite_dir, seed, today=None):
     rng = random.Random(seed)
     sprites, sizes = sprite_defs(sprite_dir)
     ids = sorted(sizes)
-    weeks = weeks_of(days)
     n_weeks = max(d.week for d in days) + 1
     delay = ripple(rng, n_weeks)
 
     placed = []
-    for w, start, _total, level in weeks:
-        row = w % 2                                   # 0 = back row, 1 = front row
-        u = U0 + (w + .5) / n_weeks * (U1 - U0) + random.Random(f"{user}-{start}").uniform(-.003, .003)
-        v = ROW_V[1] if row == 0 else ROW_V[0]
-        placed.append((face(u, v)[1], w, row, start, level, u, v))
+    for d in days:
+        if d.count <= 0:
+            continue
+        w, row = d.week, d.weekday
+        u = U0 + (w + .5) / n_weeks * (U1 - U0)
+        v = ROW_V[0] + (6 - row) / 6 * (ROW_V[1] - ROW_V[0])
+        placed.append((face(u, v)[1], w, row, date.fromisoformat(d.date), max(d.level, 1), u, v))
     towers, tops = [], []
     for _y, w, row, start, level, u, v in sorted(placed):
         sid = sprite_for(start, ids, user)
-        svg, top = tower(sid, sizes[sid], u, v, level, delay(w, row), w * .22 + row * .9)
+        svg, top = tower(sid, sizes[sid], u, v, level, delay(w, row), w * .22 + row * .45)
         towers.append(svg)
         tops.append(top)
 
     stamp = (today or date.today()).strftime("%d %b %Y")
     cx, cy = face((U0 + U1) / 2, .5)
     caption = (f'<text x="{W-28}" y="{H-24}" text-anchor="end" font-family="{SANS}" font-size="13" '
-               f'letter-spacing="1.2" fill="{MUTED}">ONE TOWER PER WEEK  ·  {total:,} CONTRIBUTIONS  ·  '
+               f'letter-spacing="1.2" fill="{MUTED}">ONE TOWER PER DAY  ·  {total:,} CONTRIBUTIONS  ·  '
                f'UPDATED {esc(stamp.upper())}</text>'
                f'<text x="28" y="40" font-family="{DISPLAY}" font-size="15" font-weight="700" letter-spacing="3" '
                f'fill="{INK}" opacity=".85">CONTRIBUTION CITY</text>')
