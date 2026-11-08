@@ -15,7 +15,9 @@ sys.path.insert(0, str(Path(__file__).parent))
 from cards import build_section  # noqa: E402
 from city import TIE, build_city  # noqa: E402
 from extras import build_crawl, build_footer, build_saber  # noqa: E402
-from data import fetch_calendar, fetch_pinned, fetch_repos, token_from_env  # noqa: E402
+from data import (fetch_activity, fetch_calendar, fetch_languages, fetch_pinned, fetch_repos,  # noqa: E402
+                  token_from_env)
+from intel import build_activity, build_languages  # noqa: E402
 from hero import build_hero  # noqa: E402
 from stats import build_stats  # noqa: E402
 
@@ -83,6 +85,14 @@ def main():
         "footer.svg": build_footer(user, TIE),
         **build_section({k: [tuple(i) for i in v] for k, v in cfg["skills"].items()}, repos),
     }
+    intel = {"languages.svg": build_languages(fetch_languages(user, token)),
+             "activity.svg": build_activity(fetch_activity(user, token, skip_repos=(f"{user}/{user}",)))}
+    for name, svg in intel.items():
+        if svg is None:
+            print(f"skipping {name}: no data (keeping the previous image name in README)")
+            svg = files.get(name) or ""
+        files[name] = svg
+    files = {k: v for k, v in files.items() if v}
     for name, svg in files.items():
         (out / name).write_text(svg, encoding="utf-8")
         print(f"wrote {name:48s} {len(svg)/1024:7.1f} KB")

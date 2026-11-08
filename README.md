@@ -10,6 +10,9 @@
 
 <img src="https://raw.githubusercontent.com/adityavdn/adityavdn/894c41d6b98fc38176976515d7322cc3ac3eac48/stats.svg" width="100%" alt="Contribution stats: totals, active days, busiest day, streaks and weekly activity" />
 
+<img src="https://raw.githubusercontent.com/adityavdn/adityavdn/894c41d6b98fc38176976515d7322cc3ac3eac48/languages.svg" width="49%" alt="Language hologram: languages used across my public repositories" />
+<img src="https://raw.githubusercontent.com/adityavdn/adityavdn/894c41d6b98fc38176976515d7322cc3ac3eac48/activity.svg" width="49%" alt="Transmission log: my latest public GitHub activity" />
+
 <img src="https://raw.githubusercontent.com/adityavdn/adityavdn/894c41d6b98fc38176976515d7322cc3ac3eac48/saber-red.svg" width="100%" alt="Red lightsaber divider" />
 
 <img src="https://raw.githubusercontent.com/adityavdn/adityavdn/894c41d6b98fc38176976515d7322cc3ac3eac48/skills.svg" width="100%" alt="Stack: JavaScript, TypeScript, Python, Java, C++, PHP, React, Next.js, HTML, CSS, Tailwind, Bootstrap, Node.js, Express, MySQL, PostgreSQL, MongoDB, Redis, SQLite, Docker, Kubernetes, AWS, GCP, Azure, Jenkins, Git, VS Code, Figma, Postman, Webpack, Vite" />

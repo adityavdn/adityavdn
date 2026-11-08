@@ -127,3 +127,105 @@ def fetch_text(url):
 
 def token_from_env():
     return os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+
+
+@dataclass(frozen=True)
+class Language:
+    name: str
+    repos: int          # public repos that contain any of this language
+    share: float        # fraction of all public code bytes
+    color: str
+
+
+@dataclass(frozen=True)
+class Event:
+    kind: str           # PUSH, NEW REPO, PR, RELEASE, STARRED, FORK, ISSUE
+    repo: str
+    text: str
+    when: str           # ISO timestamp
+
+
+def fetch_languages(user, token, limit=6):
+    """Languages across the user's public, non-fork repos (needs a token; [] on failure)."""
+    if not token:
+        return []
+    query = """query($u:String!){user(login:$u){repositories(ownerAffiliations:OWNER,isFork:false,
+      privacy:PUBLIC,first:100){nodes{languages(first:10,orderBy:{field:SIZE,direction:DESC}){
+      edges{size node{name color}}}}}}}"""
+    try:
+        raw = json.loads(_request(f"{API}/graphql", token, {"query": query, "variables": {"u": user}}))
+        nodes = raw["data"]["user"]["repositories"]["nodes"]
+    except Exception as err:
+        print(f"Languages fetch failed: {err}")
+        return []
+    repos, size, color = {}, {}, {}
+    for node in nodes:
+        for edge in node["languages"]["edges"]:
+            name = edge["node"]["name"]
+            repos[name] = repos.get(name, 0) + 1
+            size[name] = size.get(name, 0) + edge["size"]
+            color[name] = edge["node"].get("color") or "#8b949e"
+    total = sum(size.values()) or 1
+    ranked = sorted(repos, key=lambda n: (-repos[n], -size[n]))[:limit]
+    return [Language(n, repos[n], size[n] / total, color[n]) for n in ranked]
+
+
+def _commit_message(repo, sha, token):
+    try:
+        c = json.loads(_request(f"{API}/repos/{repo}/commits/{sha}", token))
+        return c["commit"]["message"].splitlines()[0]
+    except Exception:
+        return ""
+
+
+def _describe(e, user, token):
+    p, repo, kind = e.get("payload") or {}, e["repo"]["name"], e["type"]
+    if kind == "PushEvent":
+        branch = (p.get("ref") or "").replace("refs/heads/", "")
+        commits = p.get("commits") or []
+        msg = commits[-1]["message"].splitlines()[0] if commits else _commit_message(repo, p.get("head"), token)
+        return "PUSH", msg or f"pushed to {branch}"
+    if kind == "CreateEvent":
+        first_branch = p.get("ref_type") == "branch" and p.get("ref") == p.get("master_branch")
+        if p.get("ref_type") == "repository" or first_branch:
+            return "NEW REPO", p.get("description") or "new repository launched"
+        return None                          # feature branches and tags are noise here
+    if kind == "PullRequestEvent":
+        pr = p.get("pull_request") or {}
+        action = "merged" if pr.get("merged") else p.get("action", "")
+        return "PR", f"{action} #{pr.get('number', '')} {pr.get('title') or ''}".strip()
+    if kind == "ReleaseEvent":
+        return "RELEASE", (p.get("release") or {}).get("name") or "new release"
+    if kind == "IssuesEvent":
+        return "ISSUE", f"{p.get('action', '')} {(p.get('issue') or {}).get('title', '')}".strip()
+    if kind == "ForkEvent":
+        return "FORK", "forked for study"
+    return None
+
+
+def fetch_activity(user, token=None, limit=6, skip_repos=()):
+    """Latest public activity, newest first. Stars are rolled into one summary line."""
+    try:
+        events = json.loads(_request(f"{API}/users/{user}/events/public?per_page=100", token))
+    except Exception as err:
+        print(f"Activity fetch failed: {err}")
+        return []
+    out, stars, seen = [], [], set()
+    for e in events:
+        repo = e["repo"]["name"]
+        if e["type"] == "WatchEvent":
+            stars.append(e)
+            continue
+        if repo in skip_repos or e["type"] == "DeleteEvent" or len(out) >= limit:
+            continue
+        key = (e["type"], repo)
+        if key in seen:                      # one line per repo and kind keeps the log varied
+            continue
+        desc = _describe(e, user, token)
+        if desc:
+            seen.add(key)
+            out.append(Event(desc[0], repo.split("/")[-1], desc[1], e["created_at"]))
+    if stars:
+        latest = stars[0]
+        out.append(Event("STARRED", f"{len(stars)} repos", f"latest: {latest['repo']['name']}", latest["created_at"]))
+    return sorted(out, key=lambda e: e.when, reverse=True)[:limit]
