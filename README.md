@@ -8,8 +8,6 @@
 
 <a href="https://github.com/adityavdn?tab=repositories"><img src="https://raw.githubusercontent.com/adityavdn/adityavdn/output/city.svg?v=20261108" width="100%" alt="Contribution city: one landmark rises for every day I contributed this year" /></a>
 
-<img src="https://raw.githubusercontent.com/adityavdn/adityavdn/output/stats.svg?v=20261108" width="100%" alt="Contribution stats: totals, active days, busiest day, streaks and weekly activity" />
-
 <img src="https://raw.githubusercontent.com/adityavdn/adityavdn/output/saber-red.svg?v=20261108" width="100%" alt="Red lightsaber divider" />
 
 <img src="https://raw.githubusercontent.com/adityavdn/adityavdn/output/skills.svg?v=20261108" width="100%" alt="Stack: JavaScript, TypeScript, Python, Java, C++, PHP, React, Next.js, HTML, CSS, Tailwind, Bootstrap, Node.js, Express, MySQL, PostgreSQL, MongoDB, Redis, SQLite, Docker, Kubernetes, AWS, GCP, Azure, Jenkins, Git, VS Code, Figma, Postman, Webpack, Vite" />
