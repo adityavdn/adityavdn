@@ -23,20 +23,27 @@ RAW = "https://raw.githubusercontent.com/{user}/{user}/output"
 START, END = "<!-- PINNED:START -->", "<!-- PINNED:END -->"
 
 
-def pinned_block(user, repos):
+def pinned_block(user, repos, stamp):
     base = RAW.format(user=user)
     links = "\n".join(
-        f'<a href="{r.url}"><img src="{base}/repo-{r.name}.svg" width="49%" alt="{html.escape(r.name + ': ' + r.description, quote=True)}" /></a>'
+        f'<a href="{r.url}"><img src="{base}/repo-{r.name}.svg?v={stamp}" width="49%" alt="{html.escape(r.name + ': ' + r.description, quote=True)}" /></a>'
         for r in repos)
     return f"{START}\n{links}\n{END}"
 
 
-def update_readme(path, user, repos):
+def bust_cache(text, user, stamp):
+    """GitHub's image proxy caches by URL, so stamp every image with the build date."""
+    base = re.escape(RAW.format(user=user))
+    return re.sub(base + r'(/[^"?\s]+\.svg)(\?v=\d+)?', lambda m: f"{RAW.format(user=user)}{m.group(1)}?v={stamp}", text)
+
+
+def update_readme(path, user, repos, stamp):
     text = path.read_text(encoding="utf-8")
     if START not in text or END not in text:
         print(f"{path} has no pinned markers; leaving it alone")
         return False
-    new = re.sub(re.escape(START) + r".*?" + re.escape(END), lambda _: pinned_block(user, repos), text, flags=re.S)
+    new = re.sub(re.escape(START) + r".*?" + re.escape(END), lambda _: pinned_block(user, repos, stamp), text, flags=re.S)
+    new = bust_cache(new, user, stamp)
     if new == text:
         return False
     path.write_text(new, encoding="utf-8")
@@ -82,7 +89,7 @@ def main():
     print(f"{total} contributions, {sum(d.count > 0 for d in days)} active days, "
           f"{len(repos)} repos: {', '.join(r.name for r in repos)}")
     if args.readme:
-        update_readme(Path(args.readme), user, repos)
+        update_readme(Path(args.readme), user, repos, today.strftime("%Y%m%d"))
 
 
 if __name__ == "__main__":

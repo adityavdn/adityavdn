@@ -15,11 +15,16 @@ from PIL import Image
 from scene import CITY_SPACE, paint_space, to_data_uri
 from theme import DISPLAY, INK, MUTED, SANS, esc, svg_doc, twinkles
 
-W, H = 1200, 800
-TW, TH = 36, 18
-OX, OY = 150, 228
-SLAB = 22
-HEIGHT_BY_LEVEL = {1: 54, 2: 88, 3: 132, 4: 206}
+W, H = 1200, 900
+# Low, wide camera: the year is folded into two half-year blocks (27 weeks x 7 days each,
+# with a walkway between), so the long axis runs almost flat and every tower stands tall.
+FOLD, GAP = 27, 1
+COLS, ROWS = FOLD, 7 * 2 + GAP
+AX, AY = 34, 8      # screen step for one grid column
+BX, BY = 12, 21     # screen step for one grid row (towards the viewer)
+OX, OY = 232, 300
+SLAB = 26
+HEIGHT_BY_LEVEL = {1: 112, 2: 152, 3: 192, 4: 236}
 CYCLE_S = 22
 RISE_END_PCT = {1: 5.5, 2: 7, 3: 8.5, 4: 10.5}
 HOLD_END_PCT, SINK_END_PCT = 88, 95
@@ -29,7 +34,13 @@ FONTS = (("Inter", 400), ("Inter", 600), ("Orbitron", 700))
 
 
 def iso(w, d):
-    return OX + (w - d) * TW / 2, OY + (w + d) * TH / 2
+    return OX + w * AX - d * BX, OY + w * AY + d * BY
+
+
+def cell(day):
+    """Grid position: older half-year at the back, recent half in front."""
+    half = day.week // FOLD
+    return day.week % FOLD, day.weekday + half * (7 + GAP)
 
 
 def city_css():
@@ -93,13 +104,14 @@ def sprite_for(day_iso, ids, user):
 
 def ripple(rng):
     """Delay function for a ripple spreading from a random tile, with a little chop."""
-    ew, ed = rng.uniform(8, 44), rng.uniform(0, 6)
+    ew, ed = rng.uniform(4, COLS - 4), rng.uniform(0, ROWS - 1)
     phase = rng.uniform(0, math.tau)
 
     def delay(day):
-        dist = math.hypot(day.week - ew, (day.weekday - ed) * 1.6)
-        chop = .28 * math.sin(day.week * .55 + day.weekday * .9 + phase)
-        return .3 + dist * .21 + chop + rng.uniform(0, .25)
+        gx, gy = cell(day)
+        dist = math.hypot(gx - ew, (gy - ed) * 1.2)
+        chop = .28 * math.sin(gx * .55 + gy * .9 + phase)
+        return .3 + dist * .3 + chop + rng.uniform(0, .25)
     return delay
 
 
@@ -107,13 +119,15 @@ def board():
     def pt(w, d, dy=0):
         x, y = iso(w, d)
         return f"{x:.1f},{y+dy:.1f}"
-    lo, hi = -0.7, (52.7, 6.7)
+    lo, hi = -0.7, (COLS - .3, ROWS - .3)
     top, right, bottom, left = pt(lo, lo), pt(hi[0], lo), pt(*hi), pt(lo, hi[1])
     lx, ly = iso(lo, hi[1])
     bx, by = iso(*hi)
     rx, ry = iso(hi[0], lo)
-    lights = [(lx + (bx - lx) * i / 70, ly + (by - ly) * i / 70) for i in range(71)]
-    lights += [(bx + (rx - bx) * i / 10, by + (ry - by) * i / 10) for i in range(1, 11)]
+    lights = [(lx + (bx - lx) * i / 46, ly + (by - ly) * i / 46) for i in range(47)]
+    lights += [(bx + (rx - bx) * i / 22, by + (ry - by) * i / 22) for i in range(1, 23)]
+    wy = 7 + (GAP - 1) / 2
+    walk = f'<path d="M{pt(lo, wy)} L{pt(hi[0], wy)}" stroke="{CYAN}" stroke-opacity=".45" stroke-dasharray="6 7" stroke-width="1.4"/>'
     dots = "".join(f'<circle class="run" style="animation-delay:-{(i % 4) * .6:.1f}s" cx="{x:.1f}" '
                    f'cy="{y+SLAB*.45:.1f}" r="1.7" fill="{CYAN}"/>' for i, (x, y) in enumerate(lights))
     grooves = "".join(f'<path d="M{pt(lo, hi[1], SLAB*f)} L{pt(*hi, SLAB*f)} L{pt(hi[0], lo, SLAB*f)}" '
@@ -124,24 +138,23 @@ def board():
             f'{grooves}<polygon points="{top} {right} {bottom} {left}" fill="#141a26"/>'
             f'<path d="M{left} L{bottom} L{right}" fill="none" stroke="{CYAN}" stroke-width="1.6" stroke-opacity=".9"/>'
             f'<path d="M{left} L{bottom} L{right}" fill="none" stroke="{CYAN}" stroke-width="10" stroke-opacity=".1"/>'
-            f'{dots}')
+            f'{walk}{dots}')
 
 
 def tile(w, d):
-    x, y = iso(w, d)
-    s = .9
-    return (f'<polygon points="{x:.1f},{y-TH/2*s:.1f} {x+TW/2*s:.1f},{y:.1f} {x:.1f},{y+TH/2*s:.1f} '
-            f'{x-TW/2*s:.1f},{y:.1f}" fill="#1e2534" stroke="#2f3a52" stroke-width=".6"/>')
+    k = .44
+    pts = " ".join(f"{x:.1f},{y:.1f}" for x, y in (iso(w - k, d - k), iso(w + k, d - k), iso(w + k, d + k), iso(w - k, d + k)))
+    return f'<polygon points="{pts}" fill="#1e2534" stroke="#2f3a52" stroke-width=".6"/>'
 
 
 def building(day, sid, aspect, delay, sway_delay):
-    x, y = iso(day.week, day.weekday)
+    x, y = iso(*cell(day))
     lvl = max(day.level, 1)
     h = HEIGHT_BY_LEVEL[lvl]
     bw = h * aspect
     return (f'<g class="sway" style="animation-delay:-{sway_delay:.2f}s"><g class="b b{lvl}" '
             f'style="animation-delay:{delay:.2f}s"><use href="#{sid}" x="{x-bw/2:.1f}" '
-            f'y="{y+TH*0.42-h:.1f}" width="{bw:.1f}" height="{h}"/></g></g>')
+            f'y="{y+BY*0.3-h:.1f}" width="{bw:.1f}" height="{h}"/></g></g>')
 
 
 def star_destroyer(x, y, s):
@@ -210,13 +223,13 @@ def build_city(user, total, days, sprite_dir, seed, today=None):
     delay = ripple(rng)
     bg = to_data_uri(paint_space(W, H, "city", **CITY_SPACE), "JPEG", 80)
 
-    tiles = "".join(tile(d.week, d.weekday) for d in days)
+    tiles = "".join(tile(*cell(d)) for d in days)
     towers = []
-    for d in sorted(days, key=lambda d: (d.week + d.weekday, d.week)):
+    for d in sorted(days, key=lambda d: (iso(*cell(d))[1], iso(*cell(d))[0])):
         if d.count <= 0:
             continue
         sid = sprite_for(d.date, ids, user)
-        towers.append(building(d, sid, aspects[sid], delay(d), d.week * .22 + d.weekday * .45))
+        towers.append(building(d, sid, aspects[sid], delay(d), cell(d)[0] * .22 + cell(d)[1] * .45))
 
     active = sum(d.count > 0 for d in days)
     stamp = (today or date.today()).strftime("%d %b %Y")
@@ -224,7 +237,7 @@ def build_city(user, total, days, sprite_dir, seed, today=None):
               f'fill="{MUTED}">UPDATED {esc(stamp.upper())}  ·  @{esc(user.upper())}</text>')
     body = (f'<image href="{bg}" width="{W}" height="{H}" preserveAspectRatio="xMidYMid slice"/>'
             + twinkles(rng, W, 10, 420, 50)
-            + star_destroyer(880, 200, .95) + tie_flyby()
+            + star_destroyer(26, 150, .72) + tie_flyby()
             + board() + tiles + "".join(towers) + hud_title(active) + footer)
     return svg_doc(W, H, body, city_css(), scenery_defs() + sprites,
                    f"{user}'s contribution city", FONTS)
